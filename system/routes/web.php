@@ -72,6 +72,7 @@ Route::delete('admin/kategori/{kategori}', [KategoriController::class, 'destroy'
 // Halaman Client
 Route::get('index', [ClientArtikelController::class, 'index']);
 Route::get('/', [ClientArtikelController::class, 'index']);
+Route::post('/filter', [ClientArtikelController::class, 'clientfilter']);
 Route::get('/komentar/{artikel}', [ClientArtikelController::class, 'create']);
 Route::post('komentar', [ClientArtikelController::class, 'store']);
 Route::get('pesanan', [ClientArtikelController::class, 'lihat']);

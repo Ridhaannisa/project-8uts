@@ -77,71 +77,53 @@
 
     <!-- ======= Artikel Section ======= -->
     <section id="Artikel" class="Artikel">
-       <h4 class="text-center">Artikel</h4>
-      <div class="container">
-        <div class="row">
-        @foreach($list_artikel as $artikel)
-          <div class="col-md-12 col-sm-12 col-xs-12">
-          <img src="{{url('public')}}/img/laptop.jpg" class="mx-auto d-block">
-           <div class="card-deck">
-            <div class="card mt-5">
-              <div class="section-headline text-justify">
-            <div class="card-header">
-             <strong>{{$artikel->judul}}</strong>
-           </div>
-        <div class="card-body">
-        <blockquote class="blockquote">
-         <p><small>{{$artikel->isi}}</small></p>
-        <footer class="blockquote-footer">Penulis : {{$artikel->penulis}}<cite title="Source Title"> | Rilis : {{$artikel->tanggal}}</cite></footer>
-        </blockquote>
+      <div class="container-fuild">
+        <div class="col-12 text-center mb-5">
+          <strong><h1>Artikel</h1></strong>
         </div>
-        <h4 class="mt-5 pl-3">Halaman Komentar</h4>
-        @foreach($list_komentar as $komentar)
-        <div class="media pl-3">
-           <img src="{{url('public')}}/img/icon.jpg" width="3%" alt="...">
-            <div class="media-body">
-          <h5 class="mt-0">{{$komentar->nama}}</h5>
-          {{$komentar->isi}}
-          <div class="mt-2">
-        </div>
-        </div>
-      </div>
-      @endforeach
-        </div>
-          </div>
-        </div> 
-        @endforeach
-          </div>
-        </div>
-              <div class="card mt-5">
+          <div class="row">
+            <div class="col-3">
+              <div class="card">
                 <div class="card-header">
-                 <strong>Komentar</strong>
-                  </div>
+                  Filter
+                </div>
+                <div class="card-body">
+                  <form action="{{url('/filter')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                      <label for="" class="control-label">Judul</label>
+                      <input type="text" class="form-control" name="judul" value="{{$judul ?? ''}}" required="">
+                    </div>
+                    <div class="form-group">
+                      <label for="" class="control-label">Penulis</label>
+                      <input type="text" class="form-control" name="penulis" value="{{$penulis ?? ''}}" required="">
+                    </div>
+                    <button class="btn btn-dark float-right"><i class="fa fa-search"></i> Filter</button>
+                  </form>
+                
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-9">
+              <div class="row row-cols-1 row-cols-md-3">
+                @foreach($list_artikel as $artikel)
+                <div class="col mb-4">
+                  <div class="card h-100">
                     <div class="card-body">
-                      <blockquote class="blockquote mb-0">
-                        <p><small>Masukkan Komentar Anda</small></p>
-                      </blockquote>
-          <form action="{{url('komentar')}}" method="post">
-            @csrf
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                      <h5 class="card-title">{{$artikel->judul}}</h5>
+                      <p class="card-text">Penulis : {{$artikel->penulis}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <a href="{{url('komentar', $artikel->id)}}" class="btn btn-outline-primary"><i class="icofont-eye"></i></a>
+                    </div>
+                  </div>
+                </div>
+                @endforeach         
               </div>
-              <div class="form-group">
-                <label for="nama">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="nama">
-              </div>
-             <div class="form-group">
-                <label for="isi">Isi Komentar</label>
-                <textarea class="form-control" id="isi" rows="7" name="isi"></textarea>
-              </div>
-               <button type="submit" class="btn btn-dark shadow">Submit</button>
-              </form>
+            </div>
           </div>
-        </div>
       </div>
-      </div>
-    </div>
     </section>
 
     <!-- ======= Contact Section ======= -->

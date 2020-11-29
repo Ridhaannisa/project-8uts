@@ -14,7 +14,11 @@
 						@csrf
 						<div class="form-group">
 							<label for="" class="control-label">Judul</label>
-							<input type="text" class="form-control" name="judul" value="{{$judul ?? ""}}">
+							<input type="text" class="form-control" name="judul" value="{{$judul ?? ''}}" required="">
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label">Penulis</label>
+							<input type="text" class="form-control" name="penulis" value="{{$penulis ?? ''}}" required="">
 						</div>
 						<button class="btn btn-dark float-right"><i class="fa fa-search"></i> Filter</button>
 					</form>

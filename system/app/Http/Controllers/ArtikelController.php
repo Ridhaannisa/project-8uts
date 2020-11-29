@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Artikel;
-use App\Models\Kategori;
+use App\Models\kategori;
 use App\Models\Komentar;
 
 /**
@@ -23,7 +23,7 @@ class ArtikelController extends Controller
 	function create()
 	{	
 		$data['list_komentar'] = Komentar::all();
-		$data['list_kategori'] = Kategori::all();
+		$data['list_kategori'] = kategori::all();
 		return view('admin/artikel/create', $data);
 	}
 	
@@ -77,10 +77,11 @@ class ArtikelController extends Controller
 
 	function filter(){
 		$judul = request('judul');
-		$data['list_artikel'] = Artikel::where('judul', 'like' , "%$judul%")->get();
+		$penulis = request('penulis');
+		$data['list_artikel'] = Artikel::where('judul', 'like' , "%$judul%")->whereIn('penulis', [$penulis])->get();
 		$data['judul'] = $judul;
+		$data['penulis'] = $penulis;
 		
-		
-		return view('admin/artikel/index', $data);
+		return view('admin/artikel.index', $data);
 	}
 }

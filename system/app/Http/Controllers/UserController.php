@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Kategori;
+use App\Models\Artikel;
 
 /**
  * 
@@ -21,6 +22,7 @@ class UserController extends Controller
 	function create()
 	{
 		$data['list_kategori'] = Kategori::all();
+		$data['list_artikel'] = Artikel::all();
 		return view('admin/user/create');
 	}
 	

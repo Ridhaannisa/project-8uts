@@ -77,13 +77,10 @@ class ClientArtikelController extends Controller
 	function clientfilter(){
 		$judul = request('judul');
 		$penulis = request('penulis');
-		$tanggal = request('tanggal');
-		$data['list_artikel'] = Artikel::where('judul', 'like' , "%$judul%")->get();
-		//$data['list_artikel'] = Artikel::where('penulis','like', "%$penulis%")->get();
-		//$data['list_artikel'] = Artikel::where('tanggal', 'likel', "%$tanggal%")->get();
+		$data['list_artikel'] = Artikel::where('judul', 'like' , "%$judul%")->whereIn('penulis', [$penulis])->get();
 		$data['judul'] = $judul;
-		$data['tanggal'] = $tanggal;
 		$data['penulis'] = $penulis;
+		
 		return view('client.index', $data);
 	}
 }

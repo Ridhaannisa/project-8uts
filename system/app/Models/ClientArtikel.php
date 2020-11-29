@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Models;
-use App\Models\komentar;
+use App\Models\Komentar;
 
 /**
  * 
